@@ -3,7 +3,7 @@ use index::IndexCatalog;
 use std::sync::{Arc, RwLock};
 use std::time::{Duration, Instant};
 
-use tokio::prelude::*;
+use futures::{Stream, Future, future};
 use tokio::runtime::{Builder as RtBuilder, Runtime};
 use tokio::timer::Interval;
 

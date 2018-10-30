@@ -22,9 +22,9 @@ use index::*;
 use settings::Settings;
 
 use futures::{future, future::FutureResult};
-use gotham::handler::*;
-use gotham::helpers::http::response::*;
-use gotham::state::*;
+use gotham::handler::{NewHandler, HandlerError};
+use gotham::helpers::http::response::create_response;
+use gotham::state::State;
 use hyper::{Body, Response, StatusCode};
 use mime;
 use serde::Serialize;

@@ -1,8 +1,8 @@
-use gotham::router::builder::*;
+use gotham::router::builder::{build_simple_router, DefineSingleRoute, DrawRoutes};
 use gotham::router::Router;
 use hyper::Method;
 
-use handlers::*;
+use handlers::{SearchHandler, IndexHandler, BulkHandler, SummaryHandler, RootHandler, IndexPath, QueryOptions};
 use index::IndexCatalog;
 use settings::VERSION;
 

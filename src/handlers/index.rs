@@ -6,8 +6,10 @@ use std::fs;
 use std::panic::RefUnwindSafe;
 use std::sync::RwLock;
 
+use gotham::handler::{Handler, HandlerFuture};
+use gotham::helpers::http::response::create_empty_response;
 use hyper::{Method, StatusCode};
-use tantivy::schema::*;
+use tantivy::schema::{Term, Schema, Document};
 use tantivy::Index;
 
 #[derive(Deserialize)]

@@ -8,11 +8,11 @@ use std::path::PathBuf;
 use serde_json::Value as JValue;
 use tantivy::collector::TopCollector;
 use tantivy::query::{AllQuery, QueryParser};
-use tantivy::schema::*;
+use tantivy::schema::Field;
 use tantivy::Index;
 
 use handle::IndexHandle;
-use results::*;
+use results::{SearchResults, ScoredDoc};
 use settings::Settings;
 
 #[derive(Deserialize, Debug)]
@@ -225,6 +225,7 @@ pub mod tests {
 
     use super::*;
     use gotham::test::{TestClient, TestServer};
+	use tantivy::schema::{SchemaBuilder, INT_STORED, INT_INDEXED, STORED, TEXT};
     use std::fs::remove_dir;
     use std::sync::{Arc, RwLock};
 

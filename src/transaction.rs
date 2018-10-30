@@ -6,7 +6,7 @@ use serde_json::to_vec;
 use tantivy::Document;
 
 use capnp::message::HeapAllocator;
-use capnp::traits::*;
+use capnp::traits::{ToU16};
 use capnp::{message, serialize};
 
 use wal_capnp::{transaction, Action};
@@ -142,17 +142,17 @@ mod tests {
     use super::*;
     use std::fs::create_dir;
     use std::time::{SystemTime, UNIX_EPOCH};
-    use tantivy::schema::*;
+    use tantivy::schema::{SchemaBuilder, STORED};
 
     fn now() -> u64 { SystemTime::now().duration_since(UNIX_EPOCH).unwrap().as_secs() }
-
     #[test]
+
     fn test_transaction_log() {
         let mut builder = SchemaBuilder::new();
         let text = builder.add_text_field("test_text", STORED);
 
-        let cfg = TransactionConfig::new(400);
         let index_name = "test_index";
+		let cfg = TransactionConfig::new(400);
         let data_path = PathBuf::from("logs");
         if !data_path.exists() {
             create_dir(&data_path).unwrap();
